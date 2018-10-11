@@ -9,7 +9,7 @@ Rapid technological advancements in a number of fields mean both emergency respo
 
 The use of social media, drones, satellite imagery through GIS, real-time disaster modeling, and widespread connectedness means more efficient and necessary information flow. Immediate information on the most damaged areas of a city or locations of where people remain stranded saves lives. Real-time data allows emergency management to develop more targeted response plans, a technological leap from search and rescue strategies decades ago.
 
-Capabilites of technology to predict the atrocities of nature are limited by the large variations in various factors that determine the severity of the natural disaster. A technolical model to predict the natural disaster, hence cannot be hundred percent accurate but is competent in minimizing the adversities of such events. 
+Capabilites of technology to predict the atrocities of nature are limited by the large variations in various factors that determine the severity of the natural disaster. A technolical model to predict the natural disaster, hence cannot be a hundred percent accurate but is competent in minimizing the adversities of such events. 
 Keeping these points in mind we propose the following solutions:
 
 
