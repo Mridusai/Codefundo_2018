@@ -22,4 +22,4 @@ Towards Post-disaster management:
 
 (A disaster management strategy may be divided into two a  pre-disaster management and a post-disaster management.)
 
-Conclusion: The solutions mentioned above are an effort at disaster management, but in reality,might have a lot of drawbacks, especially with respect to the huge amounts of data required which is not necessarily collected by all disaster prone areas. The errors that are a part and parcel of these models.
+Conclusion: The solutions mentioned above are an effort at disaster management, but in reality, might have a lot of drawbacks; especially with respect to the huge amounts of data required which is not necessarily collected by all disaster prone areas another issue is with the errors that are a part and parcel of these models.
