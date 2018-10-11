@@ -19,6 +19,7 @@ Towards prediction of natural disasters(Pre-disaster):
 
 Towards Post-disaster management:
 1. Creating a chatbot to aid in easing pressure on emergency services lines and ensure quick and efficient management.
+2. Automatically connecting all the people in a disaster hit area via a Whatsapp-like group so that they can communicate wtih each other thereby speeding up the evacuation process.
 
 (A disaster management strategy may be divided into two a  pre-disaster management and a post-disaster management.)
 
