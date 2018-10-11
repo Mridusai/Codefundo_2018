@@ -9,15 +9,17 @@ Rapid technological advancements in a number of fields mean both emergency respo
 
 The use of social media, drones, satellite imagery through GIS, real-time disaster modeling, and widespread connectedness means more efficient and necessary information flow. Immediate information on the most damaged areas of a city or locations of where people remain stranded saves lives. Real-time data allows emergency management to develop more targeted response plans, a technological leap from search and rescue strategies decades ago.
 
-Capabilites of technology to predict the atrocities of nature are limited by the large variations in various factors that determine the severity of the natural disaster.A technolical model to predict the natural disaster, hence cannot be hundred percent accurate but is competent in minimizing the adversities of such events.Keeping the following in mind we propose the following solutions-
+Capabilites of technology to predict the atrocities of nature are limited by the large variations in various factors that determine the severity of the natural disaster. A technolical model to predict the natural disaster, hence cannot be hundred percent accurate but is competent in minimizing the adversities of such events. 
+Keeping these points in mind we propose the following solutions:
 
-Solutions proposed: A disaster management strategy may be divided into two a  pre-disaster management and a post-disaster management.
 
 Towards prediction of natural disasters(Pre-disaster):
-1. Creating a Machine learning model(Time series multi layered percepteron) for predicting floods with features like: metereological data, terrain slope, land use, vegetation, soil types, soil moisture, and various hydrological processes. on a data that is sufficiently large(We will demographically restricted because of this requirement as data can't be mined manually without the required sensor tech)
+1. Creating a Machine learning model(Time series multi layered percepteron) for predicting floods with features like: metereological data, terrain slope, land use, vegetation, soil types, soil moisture, and various hydrological processes. on a data that is sufficiently large(We will be demographically restricted because of this requirement as data can't be mined easily from random places.)
 2. Creating a model to predict the path and and approximate time of occurence of cyclones based on metereological data like pressure changes.
 
 Towards Post-disaster management:
 1. Creating a chatbot to aid in easing pressure on emergency services lines and ensure quick and efficient management.
 
-Conclusion: The solutions mentioned above are an effort at disaster management, but in reality,might have a lot of drawbacks, especially with respect to the huge amounts of data required which is not necessarily collected by all disaster prone areas. The errors that are a part and parcel of these models and those caused due to wrong info collected from sources if any.
+(A disaster management strategy may be divided into two a  pre-disaster management and a post-disaster management.)
+
+Conclusion: The solutions mentioned above are an effort at disaster management, but in reality,might have a lot of drawbacks, especially with respect to the huge amounts of data required which is not necessarily collected by all disaster prone areas. The errors that are a part and parcel of these models.
