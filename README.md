@@ -6,6 +6,7 @@ Problem statement: To predict and prevent the impact of natural disasters, such 
 Natural disasters can be defined as any catastrophic event that is caused by nature. The severity of a disaster is measured in lives lost, economic loss, and the ability of the population to rebuild. Events that occur in unpopulated areas are not considered disasters. So a flood on an uninhabited island would not count as a disaster, but a flood in a populated area is called a natural disaster.
 
 Solutions proposed: A disaster management strategy may be divided into two a  pre-disaster management and a post-disaster management.
+
 Towards prediction of natural disasters(Pre-disaster):
 1. Creating a Machine learning model(Time series multi layered percepteron) for predicting floods with features like: metereological data, terrain slope, land use, vegetation, soil types, soil moisture, and various hydrological processes. on a data that is sufficiently large(We will demographically restricted because of this requirement as data can't be mined manually without the required sensor tech)
 2. Creating a model to predict the path of cyclones in real time based on metereological data.
