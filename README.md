@@ -9,7 +9,7 @@ Solutions proposed: A disaster management strategy may be divided into two a  pr
 
 Towards prediction of natural disasters(Pre-disaster):
 1. Creating a Machine learning model(Time series multi layered percepteron) for predicting floods with features like: metereological data, terrain slope, land use, vegetation, soil types, soil moisture, and various hydrological processes. on a data that is sufficiently large(We will demographically restricted because of this requirement as data can't be mined manually without the required sensor tech)
-2. Creating a model to predict the path of cyclones in real time based on metereological data.
+2. Creating a model to predict the path and and approximate time of occurence of cyclones based on metereological data like pressure changes.
 
 Towards Post-disaster management:
 1. Creating a chatbot to aid in easing pressure on emergency services lines and ensure quick and efficient management.
