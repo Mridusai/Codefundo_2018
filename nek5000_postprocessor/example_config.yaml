@@ -1,0 +1,65 @@
+# Example Configuration for Nek5000 DNS Post-Processor
+# =====================================================
+#
+# This file shows all available configuration options.
+# Copy and modify for your specific simulation.
+
+# Case identification
+case_name: channel    # Base name of Nek5000 output files
+data_dir: ./output    # Directory containing field files
+output_dir: ./postprocessing_results  # Output directory for results
+
+# Timestep selection
+timesteps:
+  start: 1            # First timestep to read
+  end: 1000           # Last timestep to read
+  step: 1             # Interval between timesteps
+
+# Data format
+precision: single     # 'single' or 'double' precision
+
+# Statistics configuration
+statistics:
+  compute_first_order: true     # Mean velocity, pressure
+  compute_second_order: true    # Reynolds stresses, TKE
+  compute_higher_order: false   # Skewness, flatness
+
+# Temporal analysis
+temporal:
+  enable: true
+  step_change_time: null        # Set to time value for step change analysis
+                                # Set to null if no step change
+  window_type: cumulative       # 'cumulative', 'sliding', or 'exponential'
+  window_size: 100              # For sliding window
+  alpha: 0.1                    # For exponential smoothing
+
+# Output options
+output:
+  save_statistics: true         # Save computed statistics
+  export_vtk: false             # Export to VTK for ParaView
+  export_csv: true              # Export to CSV
+  export_hdf5: false            # Export to HDF5
+  formats:                      # Formats for statistics files
+    - npz
+    # - hdf5
+
+# Physical parameters (for non-dimensionalization)
+physics:
+  nu: 1.0e-5                    # Kinematic viscosity
+  half_height: 1.0              # Channel half-height or pipe radius
+  rho: 1.0                      # Density (for pressure scaling)
+
+# Visualization options (if using built-in plotting)
+visualization:
+  enabled: false
+  save_plots: true
+  plot_format: png
+  dpi: 150
+  colormap: viridis
+
+# Advanced options
+advanced:
+  read_mesh_once: true          # Cache mesh coordinates
+  use_online_algorithm: true    # Memory-efficient online computation
+  chunk_size: 100               # Process fields in chunks
+  verbose: true                 # Print progress information

@@ -1,25 +1,163 @@
-# Codefundo_2018
-Readme file for the codefundo 2018 ideathon.
+# Nek5000 DNS Post-Processor
 
-Problem statement: To predict and prevent the impact of natural disasters, such as earthquakes, hurricanes and floods.
+A comprehensive Python-based post-processing toolkit for Nek5000 Direct Numerical Simulations (DNS) of step change flows, providing full support for computing and analyzing first and second-order turbulence statistics with temporal comparison capabilities.
 
-Natural disasters can be defined as any catastrophic event that is caused by nature. The severity of a disaster is measured in lives lost, economic loss, and the ability of the population to rebuild. Events that occur in unpopulated areas are not considered disasters. So a flood on an uninhabited island would not count as a disaster, but a flood in a populated area is called a natural disaster.
+## Overview
 
-Rapid technological advancements in a number of fields mean both emergency response crews and survivors are better equipped at tackling the immediate challenges faced during a natural disaster.
+This post-processor is designed for analyzing DNS data from Nek5000 simulations, with particular focus on:
+- **Step change flows**: Simulations where flow conditions change abruptly
+- **Turbulence statistics**: Both first-order (mean) and second-order (Reynolds stresses)
+- **Temporal evolution**: Track how statistics evolve over time
 
-The use of social media, drones, satellite imagery through GIS, real-time disaster modeling, and widespread connectedness means more efficient and necessary information flow. Immediate information on the most damaged areas of a city or locations of where people remain stranded saves lives. Real-time data allows emergency management to develop more targeted response plans, a technological leap from search and rescue strategies decades ago.
+## Features
 
-Capabilites of technology to predict the atrocities of nature are limited by the large variations in various factors that determine the severity of the natural disaster. A technolical model to predict the natural disaster, hence cannot be a hundred percent accurate but is competent in minimizing the adversities of such events. 
-Keeping these points in mind we propose the following solutions:
+| Feature | Description |
+|---------|-------------|
+| **Field Reader** | Read Nek5000 binary output files (.fld, f00001) |
+| **First-Order Stats** | Mean velocity, pressure, temperature |
+| **Second-Order Stats** | Reynolds stresses, TKE, turbulent dissipation |
+| **Temporal Analysis** | Running averages, windowed statistics, step change comparison |
+| **Visualization** | Contour plots, profiles, temporal evolution |
+| **Export** | VTK (ParaView), HDF5, CSV, NumPy formats |
 
+## Quick Start
 
-Towards prediction of natural disasters(Pre-disaster):
-1. Creating a Machine learning model(Time series multi layered percepteron) for predicting floods with features like: metereological data, terrain slope, land use, vegetation, soil types, soil moisture, and various hydrological processes. on a data that is sufficiently large(We will be demographically restricted because of this requirement as data can't be mined easily from random places.)
-2. Creating a model to predict the path and and approximate time of occurence of cyclones based on metereological data like pressure changes.
+```bash
+# Install dependencies
+cd nek5000_postprocessor
+pip install -r requirements.txt
 
-Towards Post-disaster management:
-1. Creating a chatbot to aid in easing pressure on emergency services lines and ensure quick and efficient management.
+# Run the demo with synthetic data
+python examples/demo_synthetic_data.py
 
-(A disaster management strategy may be divided into two a  pre-disaster management and a post-disaster management.)
+# Post-process actual Nek5000 data
+python postprocess.py --case channel --data-dir ./output --start 1 --end 1000
 
-Conclusion: The solutions mentioned above are an effort at disaster management, but in reality, might have a lot of drawbacks; especially with respect to the huge amounts of data required which is not necessarily collected by all disaster prone areas another issue is with the errors that are a part and parcel of these models.
+# For step change analysis
+python postprocess.py --case dns --data-dir ./data --start 100 --end 500 --step-change 200
+```
+
+## Project Structure
+
+```
+nek5000_postprocessor/
+├── __init__.py              # Package initialization
+├── postprocess.py           # Main CLI script
+├── requirements.txt         # Python dependencies
+├── README.md               # Detailed documentation
+├── example_config.yaml     # Example configuration
+│
+├── readers/                # Field file readers
+│   ├── __init__.py
+│   └── field_reader.py     # Nek5000 binary file reader
+│
+├── statistics/             # Turbulence statistics
+│   ├── __init__.py
+│   ├── first_order.py      # Mean statistics
+│   └── second_order.py     # Reynolds stresses, TKE
+│
+├── temporal/               # Temporal analysis
+│   ├── __init__.py
+│   ├── temporal_averaging.py   # Time averaging methods
+│   └── temporal_comparison.py  # Step change analysis
+│
+├── visualization/          # Plotting tools
+│   ├── __init__.py
+│   └── plotting.py         # Matplotlib-based plotting
+│
+├── utils/                  # Utility functions
+│   ├── __init__.py
+│   ├── io.py              # File I/O
+│   ├── grid.py            # Grid operations
+│   └── physics.py         # Physical quantities
+│
+└── examples/              # Example scripts
+    ├── __init__.py
+    └── demo_synthetic_data.py  # Demo with synthetic data
+```
+
+## Usage Examples
+
+### Basic Statistics Computation
+
+```python
+from nek5000_postprocessor import (
+    Nek5000Reader,
+    compute_mean_fields,
+    compute_reynolds_stresses,
+)
+
+# Read Nek5000 field files
+reader = Nek5000Reader('channel', './data/')
+fields = reader.read_field_sequence(1, 100)
+
+# Compute first-order statistics (mean fields)
+mean_stats = compute_mean_fields(fields)
+print(f"Mean velocity: {mean_stats.u_mean.max()}")
+
+# Compute second-order statistics (Reynolds stresses)
+reynolds = compute_reynolds_stresses(fields, mean_stats)
+print(f"TKE: {reynolds.tke.mean()}")
+print(f"Reynolds shear stress <uv>: {reynolds.uv.max()}")
+```
+
+### Step Change Analysis
+
+```python
+from nek5000_postprocessor.temporal import StepChangeAnalyzer
+
+# Analyze step change (e.g., Reynolds number change at t=100)
+analyzer = StepChangeAnalyzer(step_time=100.0)
+for field in all_fields:
+    analyzer.add_field(field)
+
+# Compare before/after statistics
+comparison = analyzer.compare_before_after()
+print(f"TKE amplification: {comparison.tke_ratio.mean():.2f}x")
+
+# Analyze transient response
+transient = analyzer.analyze_transient()
+print(f"Relaxation time: {transient['relaxation_time']}")
+```
+
+## Second-Order Statistics
+
+The post-processor computes the following turbulence statistics:
+
+| Statistic | Symbol | Description |
+|-----------|--------|-------------|
+| Reynolds normal stress | `<u'u'>`, `<v'v'>`, `<w'w'>` | Velocity variances |
+| Reynolds shear stress | `<u'v'>`, `<u'w'>`, `<v'w'>` | Velocity covariances |
+| Turbulent Kinetic Energy | TKE | `0.5 * (uu + vv + ww)` |
+| Pressure variance | `<p'p'>` | Pressure fluctuation variance |
+| Turbulent heat flux | `<u'T'>`, `<v'T'>` | Temperature-velocity correlations |
+
+## Configuration
+
+Create a YAML configuration file for reproducible post-processing:
+
+```yaml
+case_name: channel
+data_dir: ./output
+output_dir: ./results
+
+timesteps:
+  start: 1
+  end: 1000
+  step: 1
+
+statistics:
+  compute_first_order: true
+  compute_second_order: true
+
+temporal:
+  step_change_time: 500.0  # Set to null if no step change
+```
+
+## License
+
+MIT License
+
+## Author
+
+Mridusai
