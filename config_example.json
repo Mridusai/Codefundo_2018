@@ -1,0 +1,42 @@
+{
+  "case_name": "step_change_dns",
+  "data_directory": "./field_data",
+  "output_directory": "./results",
+  "analysis_parameters": {
+    "variables": ["u", "v", "w", "p", "T"],
+    "step_change_threshold": 0.05,
+    "statistics_order": 2
+  },
+  "windows": [
+    {
+      "label": "pre_step",
+      "start": 0.0,
+      "end": 10.0,
+      "description": "Before step change"
+    },
+    {
+      "label": "transition",
+      "start": 10.0,
+      "end": 20.0,
+      "description": "During step change transition"
+    },
+    {
+      "label": "early_response",
+      "start": 20.0,
+      "end": 40.0,
+      "description": "Early response after step"
+    },
+    {
+      "label": "settling",
+      "start": 40.0,
+      "end": 80.0,
+      "description": "Settling period"
+    },
+    {
+      "label": "quasi_steady",
+      "start": 80.0,
+      "end": 150.0,
+      "description": "Quasi-steady state"
+    }
+  ]
+}
