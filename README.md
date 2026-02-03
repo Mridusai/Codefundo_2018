@@ -23,3 +23,50 @@ Towards Post-disaster management:
 (A disaster management strategy may be divided into two a  pre-disaster management and a post-disaster management.)
 
 Conclusion: The solutions mentioned above are an effort at disaster management, but in reality, might have a lot of drawbacks; especially with respect to the huge amounts of data required which is not necessarily collected by all disaster prone areas another issue is with the errors that are a part and parcel of these models.
+
+---
+
+# Nek5000 DNS Post-Processor
+
+This repository also contains a **complete post-processing toolkit** for Nek5000 Direct Numerical Simulation (DNS) data, with specialized capabilities for analyzing step change dynamics and calculating second-order statistics.
+
+## Quick Start
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Generate test data and run analysis
+python generate_test_data.py
+python nek5000_postprocessor.py test_dns --data-dir ./test_data --variables u v w p
+python visualize_results.py --results-dir ./results
+```
+
+## Features
+
+- ✅ Second-order statistics (Reynolds stress, TKE)
+- ✅ Higher-order statistics (skewness, kurtosis)
+- ✅ Temporal analysis and window comparisons
+- ✅ Step change response characterization
+- ✅ Publication-quality visualizations
+- ✅ Native Nek5000 binary format support
+
+## Documentation
+
+- **[Quick Start Guide](QUICKSTART.md)** - Get started in 5 minutes
+- **[Complete Documentation](README_POSTPROCESSOR.md)** - Full technical details
+- **[Overview](DNS_POSTPROCESSOR_OVERVIEW.md)** - Architecture and capabilities
+
+## Files
+
+Core components:
+- `nek5000_postprocessor.py` - Main post-processor
+- `visualize_results.py` - Advanced visualization
+- `example_usage.py` - Complete workflow examples
+- `generate_test_data.py` - Synthetic data generator
+- `test_postprocessor.py` - Test suite
+- `utility_scripts.py` - Helper utilities
+
+## Citation
+
+If you use this post-processor in your research, please cite appropriately.
